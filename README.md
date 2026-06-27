@@ -114,3 +114,15 @@ GOOGLE_REDIRECT_URI=http://127.0.0.1:8000/api/auth/google/callback
 ```
 
 `GOOGLE_CLIENT_SECRET` нельзя коммитить в репозиторий. Если секрет уже был отправлен в чат или попал в публичное место, его лучше перевыпустить в Google Cloud Console.
+
+### Как быстро вставить Google-ключи локально
+
+Создай файл `.env` в корне проекта или скопируй `.env.local.example`:
+
+```bash
+cp .env.local.example .env
+```
+
+Потом вставь туда реальные `GOOGLE_CLIENT_ID` и `GOOGLE_CLIENT_SECRET`. Backend теперь сам читает `.env` при запуске.
+
+Даже для учебной версии лучше не коммитить секрет в GitHub: если он нужен только для запуска, локального `.env` достаточно.

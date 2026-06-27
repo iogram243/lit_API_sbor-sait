@@ -3,6 +3,9 @@ from urllib.parse import urlencode
 
 from fastapi import APIRouter, Request
 from fastapi.responses import RedirectResponse
+from dotenv import load_dotenv
+
+load_dotenv()
 
 router = APIRouter()
 
