@@ -4,17 +4,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Дашборд — Lit Analytics</title>
-  <link rel="stylesheet" href="/static/css/styles.css?v=white-minimal-2">
+  <link rel="stylesheet" href="/static/css/styles.css?v=settings-modal-1">
 </head>
 <body>
   <header class="site-header">
     <a class="brand" href="/"><span class="brand-mark">L</span><span>Lit Analytics</span></a>
     <nav class="nav-links">
       <a href="#overview">Обзор</a>
-      <a href="#settings">Настройки</a>
+      <a href="#connections">Подключения</a>
       <a href="#expenses">Расходы</a>
     </nav>
-    <a class="btn btn-outline" href="/">На главную</a>
+    <div class="header-actions">
+      <button class="btn btn-soft" data-open-settings>Настройки</button>
+      <a class="btn btn-outline" href="/">На главную</a>
+    </div>
   </header>
 
   <main class="dashboard-page" id="overview">
@@ -46,29 +49,23 @@
       <div id="books-empty" class="empty-state">Книги пока не подключены</div>
     </section>
 
-    <section class="dashboard-grid two" id="settings">
-      <article class="panel">
-        <div class="panel-title"><h2>Настройки подключений</h2><span>заглушка</span></div>
-        <div class="form-grid">
-          <label>Litnet<input placeholder="логин или email"></label>
-          <label>Litgorod<input placeholder="логин или email"></label>
-          <label>Author.Today<input placeholder="после доступа к кабинету"></label>
-          <label>Яндекс.Директ<input placeholder="API token"></label>
-          <label>VK Ads<input placeholder="API token"></label>
-          <label>Google OAuth<input placeholder="настраивается через .env"></label>
+    <section class="dashboard-grid two" id="connections">
+      <article class="panel connection-card">
+        <div class="panel-title"><h2>Литературные площадки</h2><span>аккаунты авторов</span></div>
+        <div class="connection-list">
+          <button class="connection-row" data-open-settings data-tab="litnet"><span>Litnet</span><strong>0 аккаунтов</strong></button>
+          <button class="connection-row" data-open-settings data-tab="litgorod"><span>Litgorod</span><strong>0 аккаунтов</strong></button>
+          <button class="connection-row" data-open-settings data-tab="author_today"><span>Author.Today</span><strong>нужен доступ</strong></button>
         </div>
-        <button class="btn btn-primary">Сохранить</button>
       </article>
 
-      <article class="panel" id="expenses">
-        <div class="panel-title"><h2>Ручной расход</h2><span>заглушка</span></div>
-        <div class="form-grid single">
-          <label>Дата<input type="date"></label>
-          <label>Сумма<input type="number" placeholder="например 300"></label>
-          <label>Источник<input placeholder="блогер, канал, посев"></label>
-          <label>Комментарий<input placeholder="к чему относится расход"></label>
+      <article class="panel connection-card" id="expenses">
+        <div class="panel-title"><h2>Реклама и расходы</h2><span>API и ручной ввод</span></div>
+        <div class="connection-list">
+          <button class="connection-row api" data-open-settings data-tab="yandex"><span>Яндекс API</span><strong>ключи</strong></button>
+          <button class="connection-row api" data-open-settings data-tab="vk"><span>VK API</span><strong>ключи</strong></button>
+          <button class="connection-row"><span>Ручной расход</span><strong>заглушка</strong></button>
         </div>
-        <button class="btn btn-primary">Добавить</button>
       </article>
     </section>
 
@@ -77,6 +74,64 @@
       <ul id="alerts" class="alerts-list"></ul>
     </section>
   </main>
-  <script src="/static/js/dashboard.js?v=white-minimal-2"></script>
+
+  <div class="modal-backdrop" id="settings-modal" aria-hidden="true">
+    <section class="settings-modal" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+      <header class="modal-header">
+        <div>
+          <p class="eyebrow">Центр подключений</p>
+          <h2 id="settings-title">Настройки</h2>
+        </div>
+        <button class="icon-button" data-close-settings aria-label="Закрыть настройки">×</button>
+      </header>
+
+      <div class="settings-layout">
+        <aside class="settings-tabs" aria-label="Разделы настроек">
+          <p class="tabs-caption literary">Литературные аккаунты</p>
+          <button class="tab-button active literary" data-tab-target="litnet">Litnet</button>
+          <button class="tab-button literary" data-tab-target="litgorod">Litgorod</button>
+          <button class="tab-button literary" data-tab-target="author_today">Author.Today</button>
+
+          <p class="tabs-caption ads">Рекламные API</p>
+          <button class="tab-button ads" data-tab-target="yandex">Яндекс API</button>
+          <button class="tab-button ads" data-tab-target="vk">VK API</button>
+        </aside>
+
+        <div class="settings-content">
+          <section class="tab-panel active" data-tab-panel="litnet">
+            <div class="panel-title"><h3>Litnet аккаунты</h3><button class="btn btn-primary">Создать аккаунт</button></div>
+            <div class="settings-card sample-card"><strong>Пример аккаунта</strong><span>Название: Основной Litnet</span><span>Логин: author@example.com</span><span>Пароль: ••••••••</span></div>
+            <form class="settings-form"><label>Название аккаунта<input placeholder="Например: основной аккаунт"></label><label>Логин<input placeholder="email или логин"></label><label>Пароль<input type="password" placeholder="пароль от кабинета"></label></form>
+          </section>
+
+          <section class="tab-panel" data-tab-panel="litgorod">
+            <div class="panel-title"><h3>Litgorod аккаунты</h3><button class="btn btn-primary">Создать аккаунт</button></div>
+            <div class="settings-card sample-card"><strong>Пример аккаунта</strong><span>Название: Litgorod рабочий</span><span>Логин: writer-login</span><span>Пароль: ••••••••</span></div>
+            <form class="settings-form"><label>Название аккаунта<input placeholder="Например: Litgorod 1"></label><label>Логин<input placeholder="email или логин"></label><label>Пароль<input type="password" placeholder="пароль от кабинета"></label></form>
+          </section>
+
+          <section class="tab-panel" data-tab-panel="author_today">
+            <div class="panel-title"><h3>Author.Today аккаунты</h3><button class="btn btn-primary">Создать аккаунт</button></div>
+            <div class="settings-card note-card">Для точной настройки парсинга понадобится доступ к коммерческому кабинету или сохранённая HTML-страница статистики.</div>
+            <form class="settings-form"><label>Название аккаунта<input placeholder="Например: Author.Today основной"></label><label>Логин<input placeholder="email или логин"></label><label>Пароль<input type="password" placeholder="пароль от кабинета"></label></form>
+          </section>
+
+          <section class="tab-panel" data-tab-panel="yandex">
+            <div class="panel-title"><h3>Яндекс API</h3><button class="btn btn-primary">Создать API-ключ</button></div>
+            <div class="settings-card sample-card api-card"><strong>Пример ключа</strong><span>Название: Директ основной</span><span>API-ключ: ya_test_••••••••</span></div>
+            <form class="settings-form"><label>Название ключа<input placeholder="Например: Яндекс Директ"></label><label>API-ключ<input placeholder="вставьте API-ключ"></label></form>
+          </section>
+
+          <section class="tab-panel" data-tab-panel="vk">
+            <div class="panel-title"><h3>VK API</h3><button class="btn btn-primary">Создать API-ключ</button></div>
+            <div class="settings-card sample-card api-card"><strong>Пример ключа</strong><span>Название: VK реклама</span><span>VK ID: 123456</span><span>API-ключ: vk_test_••••••••</span></div>
+            <form class="settings-form"><label>Название ключа<input placeholder="Например: VK Ads"></label><label>VK ID<input placeholder="ID рекламного кабинета"></label><label>API-ключ<input placeholder="вставьте API-ключ"></label></form>
+          </section>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="/static/js/dashboard.js?v=settings-modal-1"></script>
 </body>
 </html>

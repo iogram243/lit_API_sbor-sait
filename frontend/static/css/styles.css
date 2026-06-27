@@ -157,3 +157,134 @@ input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(37, 99, 23
   .section-grid, .metrics, .form-grid { grid-template-columns: 1fr; }
   .hero-shell, .dashboard-page { padding-left: 16px; padding-right: 16px; }
 }
+
+.header-actions { display: inline-flex; align-items: center; gap: 10px; }
+.connection-card { min-height: 260px; }
+.connection-list { display: grid; gap: 12px; }
+.connection-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fff;
+  padding: 16px;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+}
+.connection-row:hover { border-color: var(--accent); box-shadow: 0 10px 28px rgba(37, 99, 235, .08); }
+.connection-row span { font-weight: 850; }
+.connection-row strong { color: var(--muted); font-size: 14px; }
+.connection-row.api { background: #fbfdff; }
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(15, 23, 42, .28);
+  backdrop-filter: blur(8px);
+}
+.modal-backdrop.open { display: flex; }
+.settings-modal {
+  width: min(1080px, 100%);
+  max-height: min(820px, 92vh);
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  box-shadow: 0 30px 90px rgba(15, 23, 42, .2);
+}
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 26px;
+  border-bottom: 1px solid var(--line);
+}
+.modal-header h2 { margin: 6px 0 0; font-size: 34px; letter-spacing: -.05em; }
+.icon-button {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 28px;
+  line-height: 1;
+}
+.icon-button:hover { color: var(--text); border-color: var(--text); }
+.settings-layout { display: grid; grid-template-columns: 260px 1fr; min-height: 560px; }
+.settings-tabs {
+  padding: 20px;
+  border-right: 1px solid var(--line);
+  background: #fbfcff;
+  overflow-y: auto;
+}
+.tabs-caption {
+  margin: 14px 0 8px;
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.tabs-caption.literary { color: #7c3aed; }
+.tabs-caption.ads { color: #059669; }
+.tab-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  background: transparent;
+  padding: 13px 14px;
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 850;
+  text-align: left;
+}
+.tab-button:hover { background: #fff; border-color: var(--line); }
+.tab-button.active.literary { background: #f5f3ff; color: #6d28d9; border-color: #ddd6fe; }
+.tab-button.active.ads { background: #ecfdf5; color: #047857; border-color: #bbf7d0; }
+.settings-content { padding: 24px; overflow-y: auto; }
+.tab-panel { display: none; }
+.tab-panel.active { display: grid; gap: 18px; }
+.tab-panel h3 { margin: 0; font-size: 26px; letter-spacing: -.04em; }
+.settings-card {
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface-soft);
+  color: var(--muted);
+}
+.settings-card strong { color: var(--text); }
+.sample-card { background: #f8fafc; }
+.note-card { background: #fff7ed; color: #9a3412; border-color: #fed7aa; }
+.api-card { background: #f0fdf4; }
+.settings-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.settings-form label:first-child:last-child { grid-column: auto; }
+.settings-form label:nth-child(3) { grid-column: 1 / -1; }
+
+@media (max-width: 860px) {
+  .settings-layout { grid-template-columns: 1fr; }
+  .settings-tabs { border-right: 0; border-bottom: 1px solid var(--line); }
+  .settings-form { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .header-actions { width: 100%; display: grid; grid-template-columns: 1fr 1fr; }
+  .modal-backdrop { padding: 10px; align-items: stretch; }
+  .settings-modal { max-height: 96vh; border-radius: 20px; }
+}

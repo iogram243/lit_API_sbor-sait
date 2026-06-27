@@ -15,6 +15,28 @@ function renderMetric(key, value) {
   return `<article class="metric-card"><span>${metricLabels[key]}</span><strong>${formatted}</strong><small>пока заглушка</small></article>`;
 }
 
+function activateSettingsTab(tabName = 'litnet') {
+  document.querySelectorAll('[data-tab-target]').forEach((button) => {
+    button.classList.toggle('active', button.dataset.tabTarget === tabName);
+  });
+  document.querySelectorAll('[data-tab-panel]').forEach((panel) => {
+    panel.classList.toggle('active', panel.dataset.tabPanel === tabName);
+  });
+}
+
+function openSettings(tabName = 'litnet') {
+  activateSettingsTab(tabName);
+  const modal = document.querySelector('#settings-modal');
+  modal?.classList.add('open');
+  modal?.setAttribute('aria-hidden', 'false');
+}
+
+function closeSettings() {
+  const modal = document.querySelector('#settings-modal');
+  modal?.classList.remove('open');
+  modal?.setAttribute('aria-hidden', 'true');
+}
+
 async function loadDashboard() {
   const response = await fetch('/api/dashboard/summary');
   const data = await response.json();
@@ -40,5 +62,19 @@ async function loadDashboard() {
   booksEmpty?.classList.toggle('visible', data.books.length === 0);
   document.querySelector('#alerts').innerHTML = data.alerts.map((alert) => `<li>${alert}</li>`).join('');
 }
+
+document.querySelectorAll('[data-open-settings]').forEach((button) => {
+  button.addEventListener('click', () => openSettings(button.dataset.tab || 'litnet'));
+});
+document.querySelector('[data-close-settings]')?.addEventListener('click', closeSettings);
+document.querySelector('#settings-modal')?.addEventListener('click', (event) => {
+  if (event.target.id === 'settings-modal') closeSettings();
+});
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeSettings();
+});
+document.querySelectorAll('[data-tab-target]').forEach((button) => {
+  button.addEventListener('click', () => activateSettingsTab(button.dataset.tabTarget));
+});
 
 loadDashboard();
