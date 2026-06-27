@@ -102,3 +102,15 @@ uvicorn app.main:app --reload --port 8001
 ```text
 http://127.0.0.1:8001
 ```
+
+## Google OAuth
+
+Для настоящего входа через Google нужно создать локальный `.env` на основе `.env.example` и заполнить:
+
+```env
+GOOGLE_CLIENT_ID=your-client-id.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=your-secret
+GOOGLE_REDIRECT_URI=http://127.0.0.1:8000/api/auth/google/callback
+```
+
+`GOOGLE_CLIENT_SECRET` нельзя коммитить в репозиторий. Если секрет уже был отправлен в чат или попал в публичное место, его лучше перевыпустить в Google Cloud Console.

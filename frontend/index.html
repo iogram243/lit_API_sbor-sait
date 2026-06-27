@@ -7,18 +7,72 @@
   <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
-  <main class="hero">
-    <section class="card hero-card">
-      <p class="eyebrow">Черновой прототип</p>
-      <h1>Единый кабинет аналитики для авторов</h1>
-      <p class="lead">Собираем статистику Litnet, Litgorod и Author.Today, сводим рекламные расходы и показываем ROI, ROMI и динамику книг.</p>
-      <div class="actions">
-        <button id="google-login" class="primary">Войти через Google</button>
-        <a class="secondary" href="/dashboard">Посмотреть дашборд</a>
+  <header class="site-header">
+    <a class="brand" href="/">
+      <span class="brand-mark">LA</span>
+      <span>Lit Analytics</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#features">Возможности</a>
+      <a href="#workflow">Как работает</a>
+      <a href="/dashboard">Демо</a>
+    </nav>
+    <button id="google-login" class="btn btn-outline">Войти через Google</button>
+  </header>
+
+  <main>
+    <section class="hero-shell">
+      <div class="hero-copy">
+        <p class="eyebrow">SaaS-аналитика для авторов</p>
+        <h1>Красивый кабинет для статистики книг, рекламы и продаж</h1>
+        <p class="lead">Демо показывает, как будет выглядеть единая панель для Litnet, Litgorod, Author.Today, рекламных расходов и сквозной аналитики.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/dashboard">Открыть дашборд</a>
+          <button id="hero-google-login" class="btn btn-soft">Попробовать Google вход</button>
+        </div>
+        <p id="login-result" class="status-line"></p>
       </div>
-      <p id="login-result" class="muted"></p>
+      <aside class="hero-card glass-card">
+        <div class="card-header">
+          <span>Сегодня</span>
+          <strong>ROI 215%</strong>
+        </div>
+        <div class="mini-chart" aria-label="Демо график">
+          <span style="height:38%"></span>
+          <span style="height:54%"></span>
+          <span style="height:46%"></span>
+          <span style="height:70%"></span>
+          <span style="height:62%"></span>
+          <span style="height:88%"></span>
+        </div>
+        <div class="hero-stats">
+          <div><strong>128 400 ₽</strong><span>доход</span></div>
+          <div><strong>40 700 ₽</strong><span>расходы</span></div>
+          <div><strong>460</strong><span>покупки</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="features" class="section-grid">
+      <article class="feature-card"><span>01</span><h3>Сбор статистики</h3><p>Заглушки под просмотры, библиотеки, лайки, покупки, доход и подписчиков.</p></article>
+      <article class="feature-card"><span>02</span><h3>Рекламные расходы</h3><p>Места под Яндекс.Директ, VK Ads и ручные затраты на блогеров.</p></article>
+      <article class="feature-card"><span>03</span><h3>Сквозная аналитика</h3><p>ROI, ROMI, стоимость покупки и сравнение с периодами.</p></article>
+    </section>
+
+    <section id="workflow" class="workflow glass-card">
+      <div>
+        <p class="eyebrow">Черновая логика</p>
+        <h2>Пользователь входит, подключает сервисы и смотрит дашборд</h2>
+      </div>
+      <div class="steps">
+        <span>Google вход</span>
+        <span>Настройки аккаунтов</span>
+        <span>Selenium сбор</span>
+        <span>Дашборды</span>
+      </div>
     </section>
   </main>
+
   <script src="/static/js/app.js"></script>
 </body>
 </html>

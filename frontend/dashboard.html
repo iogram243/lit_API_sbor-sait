@@ -6,58 +6,82 @@
   <title>Дашборд — Lit Analytics</title>
   <link rel="stylesheet" href="/static/css/styles.css">
 </head>
-<body>
-  <header class="topbar">
-    <div>
-      <p class="eyebrow">Личный кабинет</p>
-      <h1>Дашборд автора</h1>
-    </div>
-    <a class="secondary" href="/">На главную</a>
-  </header>
+<body class="dashboard-body">
+  <aside class="sidebar">
+    <a class="brand" href="/"><span class="brand-mark">LA</span><span>Lit Analytics</span></a>
+    <nav class="side-nav">
+      <a class="active" href="/dashboard">Обзор</a>
+      <a href="#books">Книги</a>
+      <a href="#settings">Настройки</a>
+      <a href="#expenses">Расходы</a>
+    </nav>
+    <div class="sidebar-note">Демо-режим<br><span>Все данные пока заглушки</span></div>
+  </aside>
 
-  <main class="layout">
+  <main class="dashboard-main">
+    <header class="dashboard-header">
+      <div>
+        <p class="eyebrow">Личный кабинет</p>
+        <h1>Обзор эффективности</h1>
+        <p class="page-subtitle">Доходы, расходы, книги и точки роста в одном минималистичном интерфейсе.</p>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-soft">Синхронизировать</button>
+        <button id="dashboard-google-login" class="btn btn-primary">Google вход</button>
+      </div>
+    </header>
+
     <section class="grid metrics" id="metrics"></section>
 
-    <section class="card">
-      <h2>Книги</h2>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Книга</th>
-              <th>Площадка</th>
-              <th>Просмотры</th>
-              <th>Библиотеки</th>
-              <th>Покупки</th>
-              <th>Доход</th>
-            </tr>
-          </thead>
-          <tbody id="books-table"></tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="grid two-columns">
-      <article class="card">
-        <h2>Настройки подключений</h2>
-        <label>Litnet логин<input placeholder="email или логин"></label>
-        <label>Litnet пароль<input type="password" placeholder="••••••••"></label>
-        <label>Litgorod логин<input placeholder="email или логин"></label>
-        <label>Author.Today<input placeholder="добавим после доступа к кабинету"></label>
-        <label>Яндекс.Директ API<input placeholder="OAuth token"></label>
-        <label>VK Ads API<input placeholder="access token"></label>
-        <button class="primary">Сохранить настройки</button>
+    <section class="dashboard-grid">
+      <article class="panel wide" id="books">
+        <div class="panel-title"><h2>Книги</h2><span>последние 30 дней</span></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Книга</th>
+                <th>Площадка</th>
+                <th>Просмотры</th>
+                <th>Библиотеки</th>
+                <th>Покупки</th>
+                <th>Доход</th>
+              </tr>
+            </thead>
+            <tbody id="books-table"></tbody>
+          </table>
+        </div>
       </article>
 
-      <article class="card">
-        <h2>Ручной расход</h2>
-        <label>Дата<input type="date"></label>
-        <label>Сумма<input type="number" placeholder="300"></label>
-        <label>Источник<input placeholder="Telegram-блогер"></label>
-        <label>Книга<input placeholder="Название книги"></label>
-        <button class="primary">Добавить расход</button>
-        <h3>Уведомления</h3>
-        <ul id="alerts"></ul>
+      <article class="panel alerts-panel">
+        <div class="panel-title"><h2>Уведомления</h2><span>автоанализ</span></div>
+        <ul id="alerts" class="alerts-list"></ul>
+      </article>
+    </section>
+
+    <section class="dashboard-grid two" id="settings">
+      <article class="panel">
+        <div class="panel-title"><h2>Настройки подключений</h2><span>Selenium + API</span></div>
+        <div class="form-grid">
+          <label>Litnet логин<input placeholder="email или логин"></label>
+          <label>Litnet пароль<input type="password" placeholder="••••••••"></label>
+          <label>Litgorod логин<input placeholder="email или логин"></label>
+          <label>Author.Today<input placeholder="после доступа к кабинету"></label>
+          <label>Яндекс.Директ API<input placeholder="OAuth token"></label>
+          <label>VK Ads API<input placeholder="access token"></label>
+        </div>
+        <button class="btn btn-primary">Сохранить настройки</button>
+      </article>
+
+      <article class="panel" id="expenses">
+        <div class="panel-title"><h2>Ручной расход</h2><span>блогеры и посевы</span></div>
+        <div class="form-grid single">
+          <label>Дата<input type="date"></label>
+          <label>Сумма<input type="number" placeholder="300"></label>
+          <label>Источник<input placeholder="Telegram-блогер"></label>
+          <label>Книга<input placeholder="Название книги"></label>
+        </div>
+        <button class="btn btn-primary">Добавить расход</button>
       </article>
     </section>
   </main>

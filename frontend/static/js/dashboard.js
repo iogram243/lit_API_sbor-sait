@@ -3,7 +3,7 @@ const number = new Intl.NumberFormat('ru-RU');
 
 const metricLabels = {
   revenue: 'Доход',
-  ad_spend: 'Расходы на рекламу',
+  ad_spend: 'Реклама',
   manual_spend: 'Ручные расходы',
   roi: 'ROI',
   romi: 'ROMI',
@@ -12,7 +12,7 @@ const metricLabels = {
 function renderMetric(key, value) {
   const isMoney = ['revenue', 'ad_spend', 'manual_spend'].includes(key);
   const formatted = isMoney ? money.format(value) : `${value}%`;
-  return `<article class="metric"><span>${metricLabels[key]}</span><strong>${formatted}</strong></article>`;
+  return `<article class="metric-card"><span>${metricLabels[key]}</span><strong>${formatted}</strong><small>демо-данные</small></article>`;
 }
 
 async function loadDashboard() {
@@ -25,8 +25,8 @@ async function loadDashboard() {
 
   document.querySelector('#books-table').innerHTML = data.books.map((book) => `
     <tr>
-      <td>${book.title}</td>
-      <td>${book.platform}</td>
+      <td><strong>${book.title}</strong></td>
+      <td><span class="pill">${book.platform}</span></td>
       <td>${number.format(book.views)}</td>
       <td>${number.format(book.libraries)}</td>
       <td>${number.format(book.purchases)}</td>
@@ -36,5 +36,9 @@ async function loadDashboard() {
 
   document.querySelector('#alerts').innerHTML = data.alerts.map((alert) => `<li>${alert}</li>`).join('');
 }
+
+document.querySelector('#dashboard-google-login')?.addEventListener('click', () => {
+  window.location.href = '/api/auth/google/login';
+});
 
 loadDashboard();
