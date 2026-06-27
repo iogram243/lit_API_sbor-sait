@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Дашборд — Lit Analytics</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Личный кабинет</p>
+      <h1>Дашборд автора</h1>
+    </div>
+    <a class="secondary" href="/">На главную</a>
+  </header>
+
+  <main class="layout">
+    <section class="grid metrics" id="metrics"></section>
+
+    <section class="card">
+      <h2>Книги</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Книга</th>
+              <th>Площадка</th>
+              <th>Просмотры</th>
+              <th>Библиотеки</th>
+              <th>Покупки</th>
+              <th>Доход</th>
+            </tr>
+          </thead>
+          <tbody id="books-table"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="grid two-columns">
+      <article class="card">
+        <h2>Настройки подключений</h2>
+        <label>Litnet логин<input placeholder="email или логин"></label>
+        <label>Litnet пароль<input type="password" placeholder="••••••••"></label>
+        <label>Litgorod логин<input placeholder="email или логин"></label>
+        <label>Author.Today<input placeholder="добавим после доступа к кабинету"></label>
+        <label>Яндекс.Директ API<input placeholder="OAuth token"></label>
+        <label>VK Ads API<input placeholder="access token"></label>
+        <button class="primary">Сохранить настройки</button>
+      </article>
+
+      <article class="card">
+        <h2>Ручной расход</h2>
+        <label>Дата<input type="date"></label>
+        <label>Сумма<input type="number" placeholder="300"></label>
+        <label>Источник<input placeholder="Telegram-блогер"></label>
+        <label>Книга<input placeholder="Название книги"></label>
+        <button class="primary">Добавить расход</button>
+        <h3>Уведомления</h3>
+        <ul id="alerts"></ul>
+      </article>
+    </section>
+  </main>
+  <script src="/static/js/dashboard.js"></script>
+</body>
+</html>
