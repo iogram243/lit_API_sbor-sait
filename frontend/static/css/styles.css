@@ -441,3 +441,17 @@ select {
   .profile-button strong { display: none; }
   .status-grid { grid-template-columns: 1fr; }
 }
+
+.compact-header { padding-top: 12px; padding-bottom: 12px; }
+.landing-hero {
+  padding-top: clamp(32px, 5vw, 72px);
+  padding-bottom: 28px;
+}
+.landing-hero .hero-copy h1 {
+  max-width: 760px;
+  font-size: clamp(36px, 6vw, 68px);
+  line-height: 1;
+}
+.landing-hero .lead { max-width: 620px; font-size: 18px; }
+.clean-preview { min-height: 280px; }
+.preview-line.small { width: 42%; }

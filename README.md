@@ -105,7 +105,7 @@ http://127.0.0.1:8001
 
 ## Google OAuth
 
-Для настоящего входа через Google нужно создать локальный `.env` на основе `.env.example` и заполнить:
+Для настоящего входа через Google нужен один локальный файл `.env`. Его можно создать из `.env.example` и заполнить:
 
 ```env
 GOOGLE_CLIENT_ID=your-client-id.apps.googleusercontent.com
@@ -117,10 +117,10 @@ GOOGLE_REDIRECT_URI=http://127.0.0.1:8000/api/auth/google/callback
 
 ### Как быстро вставить Google-ключи локально
 
-Создай файл `.env` в корне проекта или скопируй `.env.local.example`:
+Создай файл `.env` в корне проекта или скопируй `.env.example`:
 
 ```bash
-cp .env.local.example .env
+cp .env.example .env
 ```
 
 Потом вставь туда реальные `GOOGLE_CLIENT_ID` и `GOOGLE_CLIENT_SECRET`. Backend теперь сам читает `.env` при запуске.

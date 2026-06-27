@@ -4,55 +4,50 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Lit Analytics</title>
-  <link rel="stylesheet" href="/static/css/styles.css?v=white-minimal-2">
+  <link rel="stylesheet" href="/static/css/styles.css?v=landing-clean-1">
 </head>
 <body>
-  <header class="site-header">
+  <header class="site-header compact-header">
     <a class="brand" href="/">
       <span class="brand-mark">L</span>
       <span>Lit Analytics</span>
     </a>
     <nav class="nav-links">
       <a href="#about">О сервисе</a>
-      <a href="#modules">Модули</a>
-      <a href="/dashboard">Дашборд</a>
+      <a href="#modules">Возможности</a>
+      <a href="/dashboard">Кабинет</a>
     </nav>
     <button id="google-login" class="btn btn-outline">Войти через Google</button>
   </header>
 
   <main>
-    <section class="hero-shell" id="about">
+    <section class="hero-shell landing-hero" id="about">
       <div class="hero-copy">
-        <p class="eyebrow">Черновой интерфейс</p>
-        <h1>Единый кабинет аналитики для авторов</h1>
-        <p class="lead">Минималистичный прототип: вход через Google, подключение литературных площадок, рекламных кабинетов и будущие дашборды без лишних тестовых данных.</p>
+        <p class="eyebrow">Сквозная аналитика для авторов</p>
+        <h1>Все книги, реклама и доходы в одном кабинете</h1>
+        <p class="lead">Сервис помогает видеть динамику книг, расходы на продвижение и окупаемость рекламы без ручных таблиц.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="/dashboard">Открыть кабинет</a>
-          <button id="hero-google-login" class="btn btn-soft">Google вход</button>
+          <button id="hero-google-login" class="btn btn-soft">Войти через Google</button>
         </div>
-        <p id="login-result" class="status-line"></p>
       </div>
-      <aside class="preview-card">
-        <div class="preview-top">
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-        </div>
+      <aside class="preview-card clean-preview" aria-label="Превью кабинета">
         <div class="preview-line wide"></div>
-        <div class="preview-line"></div>
         <div class="preview-grid">
           <span></span><span></span><span></span>
         </div>
+        <div class="preview-line"></div>
+        <div class="preview-line small"></div>
       </aside>
     </section>
 
     <section class="section-grid" id="modules">
-      <article class="feature-card"><span>01</span><h3>Статистика книг</h3><p>Место под просмотры, библиотеки, лайки, покупки и доход.</p></article>
-      <article class="feature-card"><span>02</span><h3>Реклама</h3><p>Место под Яндекс.Директ, VK Ads и ручные расходы.</p></article>
-      <article class="feature-card"><span>03</span><h3>Аналитика</h3><p>Место под ROI, ROMI, конверсии и динамику по дням.</p></article>
+      <article class="feature-card"><span>01</span><h3>Книги</h3><p>Сводная статистика по площадкам: просмотры, библиотеки, покупки, доход и рост аудитории.</p></article>
+      <article class="feature-card"><span>02</span><h3>Реклама</h3><p>Подключение Яндекс.Директ, VK Ads и ручной учёт расходов на блогеров или посевы.</p></article>
+      <article class="feature-card"><span>03</span><h3>Решения</h3><p>ROI, ROMI, стоимость конверсии и понятные подсказки, когда рекламу стоит усилить или остановить.</p></article>
     </section>
   </main>
 
-  <script src="/static/js/app.js?v=white-minimal-2"></script>
+  <script src="/static/js/app.js?v=landing-clean-1"></script>
 </body>
 </html>
