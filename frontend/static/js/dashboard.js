@@ -24,6 +24,15 @@ function activateSettingsTab(tabName = 'litnet') {
   });
 }
 
+function showToast(message) {
+  const toast = document.querySelector('#toast');
+  if (!toast) return;
+  toast.textContent = message;
+  toast.classList.add('show');
+  window.clearTimeout(showToast.timer);
+  showToast.timer = window.setTimeout(() => toast.classList.remove('show'), 2400);
+}
+
 function openSettings(tabName = 'litnet') {
   activateSettingsTab(tabName);
   const modal = document.querySelector('#settings-modal');
@@ -38,6 +47,7 @@ function closeSettings() {
 }
 
 async function loadDashboard() {
+  document.body.classList.add('loading');
   const response = await fetch('/api/dashboard/summary');
   const data = await response.json();
 
@@ -61,6 +71,7 @@ async function loadDashboard() {
 
   booksEmpty?.classList.toggle('visible', data.books.length === 0);
   document.querySelector('#alerts').innerHTML = data.alerts.map((alert) => `<li>${alert}</li>`).join('');
+  document.body.classList.remove('loading');
 }
 
 document.querySelectorAll('[data-open-settings]').forEach((button) => {
@@ -75,6 +86,18 @@ document.addEventListener('keydown', (event) => {
 });
 document.querySelectorAll('[data-tab-target]').forEach((button) => {
   button.addEventListener('click', () => activateSettingsTab(button.dataset.tabTarget));
+});
+
+document.querySelectorAll('[data-toast]').forEach((button) => {
+  button.addEventListener('click', () => showToast(button.dataset.toast));
+});
+
+document.querySelectorAll('[data-confirm-delete]').forEach((button) => {
+  button.addEventListener('click', () => {
+    if (window.confirm('Удалить этот элемент? Это демо-действие.')) {
+      showToast('Элемент удалён в демо-режиме');
+    }
+  });
 });
 
 loadDashboard();

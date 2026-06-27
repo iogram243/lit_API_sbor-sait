@@ -4,67 +4,73 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Дашборд — Lit Analytics</title>
-  <link rel="stylesheet" href="/static/css/styles.css?v=settings-modal-1">
+  <link rel="stylesheet" href="/static/css/styles.css?v=global-ui-1">
 </head>
 <body>
-  <header class="site-header">
+  <header class="site-header app-header">
     <a class="brand" href="/"><span class="brand-mark">L</span><span>Lit Analytics</span></a>
     <nav class="nav-links">
-      <a href="#overview">Обзор</a>
-      <a href="#connections">Подключения</a>
+      <a href="#analytics">Аналитика</a>
+      <a href="#books">Книги</a>
       <a href="#expenses">Расходы</a>
+      <a href="#ads">Реклама</a>
     </nav>
     <div class="header-actions">
       <button class="btn btn-soft" data-open-settings>Настройки</button>
-      <a class="btn btn-outline" href="/">На главную</a>
+      <button class="profile-button" aria-label="Профиль"><span>TA</span><strong>Тестовый автор</strong></button>
     </div>
   </header>
 
-  <main class="dashboard-page" id="overview">
-    <section class="page-head">
-      <p class="eyebrow">Личный кабинет</p>
-      <h1>Дашборд</h1>
-      <p>Пока это чистый интерфейс с заглушками. После подключения аккаунтов здесь появятся реальные показатели.</p>
+  <main class="dashboard-page" id="analytics">
+    <section class="page-head dashboard-hero">
+      <div>
+        <p class="eyebrow">Личный кабинет</p>
+        <h1>Дашборд</h1>
+        <p>Белый минималистичный интерфейс со всеми основными разделами. Данные пока заглушки, но структура уже готова под реальные подключения.</p>
+      </div>
+      <div class="filter-bar">
+        <label>Период<input type="date"></label>
+        <label>До<input type="date"></label>
+        <label>Площадка<select><option>Все платформы</option><option>Litnet</option><option>Litgorod</option><option>Author.Today</option></select></label>
+      </div>
     </section>
 
     <section class="grid metrics" id="metrics"></section>
 
-    <section class="panel">
-      <div class="panel-title"><h2>Книги</h2><span>данные появятся после подключения</span></div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Книга</th>
-              <th>Площадка</th>
-              <th>Просмотры</th>
-              <th>Библиотеки</th>
-              <th>Покупки</th>
-              <th>Доход</th>
-            </tr>
-          </thead>
-          <tbody id="books-table"></tbody>
-        </table>
-      </div>
+    <section class="dashboard-grid two">
+      <article class="panel chart-panel">
+        <div class="panel-title"><h2>Динамика</h2><span>график появится после сбора данных</span></div>
+        <div class="fake-chart"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      </article>
+      <article class="panel status-panel">
+        <div class="panel-title"><h2>Статусы подключений</h2><span>заглушки</span></div>
+        <div class="status-grid">
+          <div class="status-card ok"><strong>Google OAuth</strong><span>подключено</span></div>
+          <div class="status-card pending"><strong>Litnet</strong><span>не настроено</span></div>
+          <div class="status-card pending"><strong>Litgorod</strong><span>не настроено</span></div>
+          <div class="status-card error"><strong>Author.Today</strong><span>нужен доступ</span></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel screen-section" id="books">
+      <div class="panel-title"><h2>Книги</h2><span>отдельный экран</span></div>
+      <div class="section-toolbar"><button class="btn btn-primary">Добавить книгу</button><button class="btn btn-outline">Импортировать</button></div>
+      <div class="table-wrap"><table><thead><tr><th>Книга</th><th>Площадка</th><th>Просмотры</th><th>Библиотеки</th><th>Покупки</th><th>Доход</th></tr></thead><tbody id="books-table"></tbody></table></div>
       <div id="books-empty" class="empty-state">Книги пока не подключены</div>
     </section>
 
-    <section class="dashboard-grid two" id="connections">
-      <article class="panel connection-card">
-        <div class="panel-title"><h2>Литературные площадки</h2><span>аккаунты авторов</span></div>
-        <div class="connection-list">
-          <button class="connection-row" data-open-settings data-tab="litnet"><span>Litnet</span><strong>0 аккаунтов</strong></button>
-          <button class="connection-row" data-open-settings data-tab="litgorod"><span>Litgorod</span><strong>0 аккаунтов</strong></button>
-          <button class="connection-row" data-open-settings data-tab="author_today"><span>Author.Today</span><strong>нужен доступ</strong></button>
-        </div>
+    <section class="dashboard-grid two">
+      <article class="panel screen-section" id="expenses">
+        <div class="panel-title"><h2>Расходы</h2><span>ручные траты</span></div>
+        <div class="empty-state visible">Пока нет расходов. Позже здесь будет таблица блогеров, посевов и рекламных затрат.</div>
+        <button class="btn btn-primary" data-toast="Расход сохранён в демо-режиме">Добавить расход</button>
       </article>
-
-      <article class="panel connection-card" id="expenses">
-        <div class="panel-title"><h2>Реклама и расходы</h2><span>API и ручной ввод</span></div>
+      <article class="panel screen-section" id="ads">
+        <div class="panel-title"><h2>Рекламные кабинеты</h2><span>API</span></div>
         <div class="connection-list">
-          <button class="connection-row api" data-open-settings data-tab="yandex"><span>Яндекс API</span><strong>ключи</strong></button>
-          <button class="connection-row api" data-open-settings data-tab="vk"><span>VK API</span><strong>ключи</strong></button>
-          <button class="connection-row"><span>Ручной расход</span><strong>заглушка</strong></button>
+          <button class="connection-row api" data-open-settings data-tab="yandex"><span>Яндекс API</span><strong>не настроено</strong></button>
+          <button class="connection-row api" data-open-settings data-tab="vk"><span>VK API</span><strong>не настроено</strong></button>
         </div>
       </article>
     </section>
@@ -78,10 +84,7 @@
   <div class="modal-backdrop" id="settings-modal" aria-hidden="true">
     <section class="settings-modal" role="dialog" aria-modal="true" aria-labelledby="settings-title">
       <header class="modal-header">
-        <div>
-          <p class="eyebrow">Центр подключений</p>
-          <h2 id="settings-title">Настройки</h2>
-        </div>
+        <div><p class="eyebrow">Центр подключений</p><h2 id="settings-title">Настройки</h2></div>
         <button class="icon-button" data-close-settings aria-label="Закрыть настройки">×</button>
       </header>
 
@@ -91,47 +94,29 @@
           <button class="tab-button active literary" data-tab-target="litnet">Litnet</button>
           <button class="tab-button literary" data-tab-target="litgorod">Litgorod</button>
           <button class="tab-button literary" data-tab-target="author_today">Author.Today</button>
-
           <p class="tabs-caption ads">Рекламные API</p>
           <button class="tab-button ads" data-tab-target="yandex">Яндекс API</button>
           <button class="tab-button ads" data-tab-target="vk">VK API</button>
+          <p class="tabs-caption system">Система</p>
+          <button class="tab-button system" data-tab-target="google">Google OAuth</button>
+          <button class="tab-button system" data-tab-target="system">Системные</button>
         </aside>
 
         <div class="settings-content">
-          <section class="tab-panel active" data-tab-panel="litnet">
-            <div class="panel-title"><h3>Litnet аккаунты</h3><button class="btn btn-primary">Создать аккаунт</button></div>
-            <div class="settings-card sample-card"><strong>Пример аккаунта</strong><span>Название: Основной Litnet</span><span>Логин: author@example.com</span><span>Пароль: ••••••••</span></div>
-            <form class="settings-form"><label>Название аккаунта<input placeholder="Например: основной аккаунт"></label><label>Логин<input placeholder="email или логин"></label><label>Пароль<input type="password" placeholder="пароль от кабинета"></label></form>
-          </section>
-
-          <section class="tab-panel" data-tab-panel="litgorod">
-            <div class="panel-title"><h3>Litgorod аккаунты</h3><button class="btn btn-primary">Создать аккаунт</button></div>
-            <div class="settings-card sample-card"><strong>Пример аккаунта</strong><span>Название: Litgorod рабочий</span><span>Логин: writer-login</span><span>Пароль: ••••••••</span></div>
-            <form class="settings-form"><label>Название аккаунта<input placeholder="Например: Litgorod 1"></label><label>Логин<input placeholder="email или логин"></label><label>Пароль<input type="password" placeholder="пароль от кабинета"></label></form>
-          </section>
-
-          <section class="tab-panel" data-tab-panel="author_today">
-            <div class="panel-title"><h3>Author.Today аккаунты</h3><button class="btn btn-primary">Создать аккаунт</button></div>
-            <div class="settings-card note-card">Для точной настройки парсинга понадобится доступ к коммерческому кабинету или сохранённая HTML-страница статистики.</div>
-            <form class="settings-form"><label>Название аккаунта<input placeholder="Например: Author.Today основной"></label><label>Логин<input placeholder="email или логин"></label><label>Пароль<input type="password" placeholder="пароль от кабинета"></label></form>
-          </section>
-
-          <section class="tab-panel" data-tab-panel="yandex">
-            <div class="panel-title"><h3>Яндекс API</h3><button class="btn btn-primary">Создать API-ключ</button></div>
-            <div class="settings-card sample-card api-card"><strong>Пример ключа</strong><span>Название: Директ основной</span><span>API-ключ: ya_test_••••••••</span></div>
-            <form class="settings-form"><label>Название ключа<input placeholder="Например: Яндекс Директ"></label><label>API-ключ<input placeholder="вставьте API-ключ"></label></form>
-          </section>
-
-          <section class="tab-panel" data-tab-panel="vk">
-            <div class="panel-title"><h3>VK API</h3><button class="btn btn-primary">Создать API-ключ</button></div>
-            <div class="settings-card sample-card api-card"><strong>Пример ключа</strong><span>Название: VK реклама</span><span>VK ID: 123456</span><span>API-ключ: vk_test_••••••••</span></div>
-            <form class="settings-form"><label>Название ключа<input placeholder="Например: VK Ads"></label><label>VK ID<input placeholder="ID рекламного кабинета"></label><label>API-ключ<input placeholder="вставьте API-ключ"></label></form>
-          </section>
+          <section class="tab-panel active" data-tab-panel="litnet" data-account-panel="Litnet"><div class="panel-title"><h3>Litnet аккаунты</h3><button class="btn btn-primary" data-toast="Аккаунт Litnet создан в демо-режиме">Создать аккаунт</button></div><div class="entity-list"><article class="entity-card"><div><strong>Основной Litnet</strong><span class="status-badge pending">не настроено</span></div><p>Логин: author@example.com · Пароль: ••••••••</p><div class="entity-actions"><button data-toast="Проверка подключения запущена">Проверить</button><button data-toast="Редактирование пока заглушка">Редактировать</button><button data-confirm-delete>Удалить</button></div></article></div><form class="settings-form"><label>Название аккаунта<input placeholder="Например: основной аккаунт"></label><label>Логин<input placeholder="email или логин"></label><label>Пароль<input type="password" placeholder="пароль от кабинета"></label></form></section>
+          <section class="tab-panel" data-tab-panel="litgorod"><div class="panel-title"><h3>Litgorod аккаунты</h3><button class="btn btn-primary" data-toast="Аккаунт Litgorod создан в демо-режиме">Создать аккаунт</button></div><div class="entity-list"><article class="entity-card"><div><strong>Litgorod рабочий</strong><span class="status-badge pending">не настроено</span></div><p>Логин: writer-login · Пароль: ••••••••</p><div class="entity-actions"><button data-toast="Проверка подключения запущена">Проверить</button><button data-toast="Редактирование пока заглушка">Редактировать</button><button data-confirm-delete>Удалить</button></div></article></div><form class="settings-form"><label>Название аккаунта<input placeholder="Например: Litgorod 1"></label><label>Логин<input placeholder="email или логин"></label><label>Пароль<input type="password" placeholder="пароль от кабинета"></label></form></section>
+          <section class="tab-panel" data-tab-panel="author_today"><div class="panel-title"><h3>Author.Today аккаунты</h3><button class="btn btn-primary" data-toast="Аккаунт Author.Today создан в демо-режиме">Создать аккаунт</button></div><div class="settings-card note-card">Для точной настройки парсинга понадобится доступ к коммерческому кабинету или сохранённая HTML-страница статистики.</div><form class="settings-form"><label>Название аккаунта<input placeholder="Например: Author.Today основной"></label><label>Логин<input placeholder="email или логин"></label><label>Пароль<input type="password" placeholder="пароль от кабинета"></label></form></section>
+          <section class="tab-panel" data-tab-panel="yandex"><div class="panel-title"><h3>Яндекс API</h3><button class="btn btn-primary" data-toast="Яндекс API-ключ создан в демо-режиме">Создать API-ключ</button></div><div class="entity-list"><article class="entity-card"><div><strong>Директ основной</strong><span class="status-badge error">ошибка</span></div><p>API-ключ: ya_test_••••••••</p><div class="entity-actions"><button data-toast="Проверка ключа запущена">Проверить ключ</button><button data-toast="Редактирование пока заглушка">Редактировать</button><button data-confirm-delete>Удалить</button></div></article></div><form class="settings-form"><label>Название ключа<input placeholder="Например: Яндекс Директ"></label><label>API-ключ<input placeholder="вставьте API-ключ"></label></form></section>
+          <section class="tab-panel" data-tab-panel="vk"><div class="panel-title"><h3>VK API</h3><button class="btn btn-primary" data-toast="VK API-ключ создан в демо-режиме">Создать API-ключ</button></div><div class="entity-list"><article class="entity-card"><div><strong>VK реклама</strong><span class="status-badge ok">подключено</span></div><p>VK ID: 123456 · API-ключ: vk_test_••••••••</p><div class="entity-actions"><button data-toast="Ключ успешно проверен">Проверить ключ</button><button data-toast="Редактирование пока заглушка">Редактировать</button><button data-confirm-delete>Удалить</button></div></article></div><form class="settings-form"><label>Название ключа<input placeholder="Например: VK Ads"></label><label>VK ID<input placeholder="ID рекламного кабинета"></label><label>API-ключ<input placeholder="вставьте API-ключ"></label></form></section>
+          <section class="tab-panel" data-tab-panel="google"><div class="panel-title"><h3>Google OAuth</h3><span class="status-badge ok">подключено</span></div><div class="settings-card"><strong>Авторизация</strong><span>Client ID и Secret читаются из локального .env</span><span>Redirect URI: /api/auth/google/callback</span></div><button class="btn btn-primary" data-toast="Google OAuth проверен в демо-режиме">Проверить OAuth</button></section>
+          <section class="tab-panel" data-tab-panel="system"><div class="panel-title"><h3>Системные настройки</h3><span class="status-badge pending">черновик</span></div><form class="settings-form"><label>Часовой пояс<input placeholder="Europe/Moscow"></label><label>Валюта<input placeholder="RUB"></label><label>Частота синхронизации<input placeholder="каждый день"></label></form><button class="btn btn-primary" data-toast="Системные настройки сохранены">Сохранить</button></section>
         </div>
       </div>
     </section>
   </div>
 
-  <script src="/static/js/dashboard.js?v=settings-modal-1"></script>
+  <div class="toast" id="toast" aria-live="polite"></div>
+
+  <script src="/static/js/dashboard.js?v=global-ui-1"></script>
 </body>
 </html>
