@@ -14,9 +14,11 @@ DEFAULT_REDIRECT_URI = "http://127.0.0.1:8000/api/auth/google/callback"
 
 
 @router.get("/google/login")
-def google_login():
+def google_login(request: Request):
     client_id = os.getenv("GOOGLE_CLIENT_ID")
     redirect_uri = os.getenv("GOOGLE_REDIRECT_URI", DEFAULT_REDIRECT_URI)
+    if redirect_uri == DEFAULT_REDIRECT_URI and request.url.hostname not in {"127.0.0.1", "localhost"}:
+        redirect_uri = str(request.url_for("google_callback"))
 
     if not client_id:
         return {

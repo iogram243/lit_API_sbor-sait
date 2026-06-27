@@ -105,24 +105,18 @@ http://127.0.0.1:8001
 
 ## Google OAuth
 
-Для настоящего входа через Google нужен один локальный файл `.env`. Его можно создать из `.env.example` и заполнить:
+Для входа через Google нужен один локальный файл `.env` в корне проекта. Он не хранится в GitHub, потому что внутри секреты.
+
+Минимальное содержимое файла:
 
 ```env
+APP_NAME=Lit Analytics
+SECRET_KEY=change-me-local
 GOOGLE_CLIENT_ID=your-client-id.apps.googleusercontent.com
-GOOGLE_CLIENT_SECRET=your-secret
+GOOGLE_CLIENT_SECRET=your-google-client-secret
 GOOGLE_REDIRECT_URI=http://127.0.0.1:8000/api/auth/google/callback
+YANDEX_DIRECT_TOKEN=
+VK_ADS_TOKEN=
 ```
 
-`GOOGLE_CLIENT_SECRET` нельзя коммитить в репозиторий. Если секрет уже был отправлен в чат или попал в публичное место, его лучше перевыпустить в Google Cloud Console.
-
-### Как быстро вставить Google-ключи локально
-
-Создай файл `.env` в корне проекта или скопируй `.env.example`:
-
-```bash
-cp .env.example .env
-```
-
-Потом вставь туда реальные `GOOGLE_CLIENT_ID` и `GOOGLE_CLIENT_SECRET`. Backend теперь сам читает `.env` при запуске.
-
-Даже для учебной версии лучше не коммитить секрет в GitHub: если он нужен только для запуска, локального `.env` достаточно.
+Если проект запускается в Codespaces/GitHub preview, redirect URI в Google Cloud должен совпадать с публичным preview-адресом, а не только с `127.0.0.1`.
