@@ -12,7 +12,7 @@ const metricLabels = {
 function renderMetric(key, value) {
   const isMoney = ['revenue', 'ad_spend', 'manual_spend'].includes(key);
   const formatted = isMoney ? money.format(value) : `${value}%`;
-  return `<article class="metric-card"><span>${metricLabels[key]}</span><strong>${formatted}</strong><small>демо-данные</small></article>`;
+  return `<article class="metric-card"><span>${metricLabels[key]}</span><strong>${formatted}</strong><small>пока заглушка</small></article>`;
 }
 
 async function loadDashboard() {
@@ -23,7 +23,10 @@ async function loadDashboard() {
     .map((key) => renderMetric(key, data[key]))
     .join('');
 
-  document.querySelector('#books-table').innerHTML = data.books.map((book) => `
+  const booksTable = document.querySelector('#books-table');
+  const booksEmpty = document.querySelector('#books-empty');
+
+  booksTable.innerHTML = data.books.map((book) => `
     <tr>
       <td><strong>${book.title}</strong></td>
       <td><span class="pill">${book.platform}</span></td>
@@ -34,11 +37,8 @@ async function loadDashboard() {
     </tr>
   `).join('');
 
+  booksEmpty?.classList.toggle('visible', data.books.length === 0);
   document.querySelector('#alerts').innerHTML = data.alerts.map((alert) => `<li>${alert}</li>`).join('');
 }
-
-document.querySelector('#dashboard-google-login')?.addEventListener('click', () => {
-  window.location.href = '/api/auth/google/login';
-});
 
 loadDashboard();
