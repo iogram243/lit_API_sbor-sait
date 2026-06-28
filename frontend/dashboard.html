@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Дашборд — Lit Analytics</title>
+  <link rel="stylesheet" href="/static/css/styles.css?v=global-ui-1">
+</head>
+<body>
+  <header class="site-header app-header">
+    <a class="brand" href="/"><span class="brand-mark">L</span><span>Lit Analytics</span></a>
+    <div class="header-actions">
+      <button class="btn btn-soft" data-open-settings>Настройки</button>
+      <button class="profile-button" aria-label="Профиль"><span>TA</span><strong>Тестовый автор</strong></button>
+    </div>
+  </header>
+
+  <main class="dashboard-page">
+    <section class="page-head dashboard-hero">
+      <div>
+        <p class="eyebrow">Настройки платформ</p>
+        <h1>Дашборд</h1>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-backdrop open" id="settings-modal" aria-hidden="false">
+    <section class="settings-modal" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+      <header class="modal-header">
+        <div><p class="eyebrow">Центр подключений</p><h2 id="settings-title">Настройки</h2></div>
+        <button class="icon-button" data-close-settings aria-label="Закрыть настройки">×</button>
+      </header>
+
+      <div class="settings-layout">
+        <aside class="settings-tabs" aria-label="Разделы настроек">
+          <p class="tabs-caption literary">Литературные аккаунты</p>
+          <button class="tab-button active literary" data-tab-target="litnet">Litnet</button>
+          <button class="tab-button literary" data-tab-target="litgorod">Litgorod</button>
+          <p class="tabs-caption ads">Рекламные API</p>
+          <button class="tab-button ads" data-tab-target="yandex">Яндекс API</button>
+          <button class="tab-button ads" data-tab-target="vk">VK API</button>
+          <p class="tabs-caption system">Система</p>
+          <button class="tab-button system" data-tab-target="system">Системные</button>
+        </aside>
+
+        <div class="settings-content">
+          <section class="tab-panel active" data-tab-panel="litnet">
+            <div class="panel-title"><h3>Litnet аккаунты</h3><button class="btn btn-primary" data-open-entity-modal data-entity-type="litnet">Создать аккаунт</button></div>
+            <div class="entity-list" id="litnet-entities"></div>
+          </section>
+          <section class="tab-panel" data-tab-panel="litgorod">
+            <div class="panel-title"><h3>Litgorod аккаунты</h3><button class="btn btn-primary" data-open-entity-modal data-entity-type="litgorod">Создать аккаунт</button></div>
+            <div class="entity-list" id="litgorod-entities"></div>
+          </section>
+          <section class="tab-panel" data-tab-panel="yandex">
+            <div class="panel-title"><h3>Яндекс API</h3><button class="btn btn-primary" data-open-entity-modal data-entity-type="yandex">Создать API-ключ</button></div>
+            <div class="entity-list" id="yandex-entities"></div>
+          </section>
+          <section class="tab-panel" data-tab-panel="vk">
+            <div class="panel-title"><h3>VK API</h3><button class="btn btn-primary" data-open-entity-modal data-entity-type="vk">Создать API-ключ</button></div>
+            <div class="entity-list" id="vk-entities"></div>
+          </section>
+          <section class="tab-panel" data-tab-panel="system">
+            <div class="panel-title"><h3>Системные настройки</h3><span class="status-badge pending">черновик</span></div>
+            <form class="settings-form" id="system-settings-form">
+              <label>Часовой пояс<select name="timezone"><option value="UTC+2">UTC+2</option><option value="UTC+3" selected>UTC+3</option><option value="UTC+4">UTC+4</option></select></label>
+              <label>Валюта<select name="currency"><option value="RUB" selected>RUB</option><option value="USD">USD</option><option value="EUR">EUR</option></select></label>
+              <label>Частота синхронизации<select name="sync_frequency"><option value="daily" selected>Каждый день</option><option value="weekly">Каждую неделю</option><option value="hourly">Каждый час</option></select></label>
+            </form>
+            <button class="btn btn-primary" id="save-system-settings">Сохранить</button>
+          </section>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="modal-backdrop" id="entity-modal" aria-hidden="true">
+    <section class="settings-modal entity-modal" role="dialog" aria-modal="true" aria-labelledby="entity-title">
+      <header class="modal-header">
+        <div><p class="eyebrow" id="entity-kind-label">Новая запись</p><h2 id="entity-title">Создать</h2></div>
+        <button class="icon-button" data-close-entity-modal aria-label="Закрыть модальное окно">×</button>
+      </header>
+      <div class="settings-content">
+        <form class="settings-form" id="entity-form">
+          <input type="hidden" name="entity_id">
+          <input type="hidden" name="entity_type">
+          <label>Название<input name="account_name" placeholder="Название аккаунта"></label>
+          <label class="entity-field entity-field-login">Логин<input name="login" placeholder="email или логин"></label>
+          <label class="entity-field entity-field-password">Пароль<input type="password" name="password" placeholder="пароль от кабинета"></label>
+          <label class="entity-field entity-field-api-key">API-ключ<input name="api_key" placeholder="вставьте API-ключ"></label>
+          <label class="entity-field entity-field-vk-id">VK ID<input name="vk_id" placeholder="ID рекламного кабинета"></label>
+          <div class="settings-form-actions">
+            <button class="btn btn-outline" type="button" data-close-entity-modal>Отменить</button>
+            <button class="btn btn-primary" type="button" id="save-entity">Сохранить</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+  <div class="toast" id="toast" aria-live="polite"></div>
+
+  <script src="/static/js/dashboard.js?v=global-ui-1"></script>
+</body>
+</html>
