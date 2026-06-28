@@ -665,6 +665,11 @@
             </svg>
           </button>
         </header>
+        <main
+          class="notifications-page"
+          id="notifications"
+          data-zero-state="true"
+        >
         <main class="notifications-page" id="notifications">
           <section class="page-head">
             <div class="title">
@@ -923,4 +928,54 @@
     </div>
     <script src="/static/js/app.js?v=landing-pixel-2"></script>
   </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lit Analytics</title>
+  <link rel="stylesheet" href="/static/css/styles.css?v=landing-clean-1">
+</head>
+<body>
+  <header class="site-header compact-header">
+    <a class="brand" href="/">
+      <span class="brand-mark">L</span>
+      <span>Lit Analytics</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#about">О сервисе</a>
+      <a href="#modules">Возможности</a>
+      <a href="/dashboard">Кабинет</a>
+    </nav>
+    <button id="google-login" class="btn btn-outline">Войти через Google</button>
+  </header>
+
+  <main>
+    <section class="hero-shell landing-hero" id="about">
+      <div class="hero-copy">
+        <p class="eyebrow">Сквозная аналитика для авторов</p>
+        <h1>Все книги, реклама и доходы в одном кабинете</h1>
+        <p class="lead">Сервис помогает видеть динамику книг, расходы на продвижение и окупаемость рекламы без ручных таблиц.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/dashboard">Открыть кабинет</a>
+          <button id="hero-google-login" class="btn btn-soft">Войти через Google</button>
+        </div>
+      </div>
+      <aside class="preview-card clean-preview" aria-label="Превью кабинета">
+        <div class="preview-line wide"></div>
+        <div class="preview-grid">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="preview-line"></div>
+        <div class="preview-line small"></div>
+      </aside>
+    </section>
+
+    <section class="section-grid" id="modules">
+      <article class="feature-card"><span>01</span><h3>Книги</h3><p>Сводная статистика по площадкам: просмотры, библиотеки, покупки, доход и рост аудитории.</p></article>
+      <article class="feature-card"><span>02</span><h3>Реклама</h3><p>Подключение Яндекс.Директ, VK Ads и ручной учёт расходов на блогеров или посевы.</p></article>
+      <article class="feature-card"><span>03</span><h3>Решения</h3><p>ROI, ROMI, стоимость конверсии и понятные подсказки, когда рекламу стоит усилить или остановить.</p></article>
+    </section>
+  </main>
+
+  <script src="/static/js/app.js?v=landing-clean-1"></script>
+</body>
 </html>
